@@ -91,8 +91,8 @@ class T2KCorpus(collection.Collection):
             self.add_song(T2KSong(songid, self.verbose))
 
     def get_cliquememberids(self):
-        cliqueids = np.array(map(T2KSong.get_cliquehash, self.collection))
-        spotifyids = np.array(map(T2KSong.get_spotifyid, self.collection))
+        cliqueids = np.array(map(T2KSong.get_cliquehash, self.set))
+        spotifyids = np.array(map(T2KSong.get_spotifyid, self.set))
         cliquememberids = np.zeros(self.get_size())
         cliquesize = np.zeros(self.get_size())
         for i in range(self.get_size()):
@@ -114,7 +114,7 @@ class T2KExperiment(experiment.Experiment):
 
         queries = T2KCorpus(qrange)
         candidates = T2KCorpus(crange)
-        groundtruth = collection.collection_groundtruth(queries.collection, candidates.collection)
+        groundtruth = collection.groundtruth(queries.set, candidates.set)
         experiment.Experiment.__init__(self, queries, candidates, groundtruth, fptype, params)
 
 

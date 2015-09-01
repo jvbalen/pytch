@@ -64,5 +64,5 @@ class C80Experiment(experiment.Experiment):
 
         queries = C80Collection(rng)
         candidates = C80Collection(list(np.array(rng) + 80))
-        groundtruth = collection.collection_groundtruth(queries.collection, candidates.collection)
+        groundtruth = collection.groundtruth(queries.set, candidates.set)
         experiment.Experiment.__init__(self, queries, candidates, groundtruth, fptype, params)

@@ -8,11 +8,11 @@ class Collection(object):
     """ Collection of songs """
 
     def __init__(self, verbose=False):
-        self.collection = []
+        self.set = []
         self.verbose = verbose
 
     def add_song(self, newsong):
-        self.collection.append(newsong)
+        self.set.append(newsong)
 
     def add_range(self, rng):
         for songid in rng:
@@ -21,16 +21,16 @@ class Collection(object):
             self.add_song(song.Song('', '', songid, self.verbose))
 
     def get_song(self, ind):
-        return self.collection[ind]
+        return self.set[ind]
 
     def get_size(self):
-        return len(self.collection)
+        return len(self.set)
 
     def get_groundtruth(self):
-        return collection_groundtruth(self.collection, mode='fast')
+        return groundtruth(self.set, mode='fast')
 
 
-def collection_groundtruth(collection1, collection2=None, mode='fast'):
+def groundtruth(collection1, collection2=None, mode='fast'):
     if collection2 is None:
         collection2 = collection1
     n1 = len(collection1)
